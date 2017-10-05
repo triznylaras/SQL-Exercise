@@ -1,0 +1,262 @@
+C:\Users\Trizny Larasati>cd..
+
+C:\Users>cd..
+
+C:\>cd xampp
+
+C:\xampp>cd mysql
+
+C:\xampp\mysql>cd bin
+
+C:\xampp\mysql\bin>mysql -u root
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 1
+Server version: 5.5.16 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2011, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE SUPERMARKET;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE SUPERMARKET
+Database changed
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| cdcol              |
+| db_kasir           |
+| db_sinila          |
+| mysql              |
+| performance_schema |
+| phpmyadmin         |
+| supermarket        |
+| test               |
+| testdb             |
+| webauth            |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> INSERT INTO PELANGGAN (ID,NAMA,UMUR,ALAMAT,GAJI) VALUES (11, 'Laras', 22, 'Antapani', 2000000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM PELANGGAN;
++----+-------+------+----------+---------+
+| ID | NAMA  | UMUR | ALAMAT   | GAJI    |
++----+-------+------+----------+---------+
+| 11 | Laras |   22 | Antapani | 2000000 |
++----+-------+------+----------+---------+
+1 row in set (0.02 sec)
+
+mysql> INSERT INTO PELANGGAN (ID,NAMA,UMUR,ALAMAT,GAJI) VALUES (12, 'Bayu', 23, 'Cihampelas', 3000000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PELANGGAN (ID,NAMA,UMUR,ALAMAT,GAJI) VALUES (13, 'Afiani', 23, 'Cimahi', 4000000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM PELANGGAN;
++----+--------+------+------------+---------+
+| ID | NAMA   | UMUR | ALAMAT     | GAJI    |
++----+--------+------+------------+---------+
+| 11 | Laras  |   22 | Antapani   | 2000000 |
+| 12 | Bayu   |   23 | Cihampelas | 3000000 |
+| 13 | Afiani |   23 | Cimahi     | 4000000 |
++----+--------+------+------------+---------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT ID, NAMA, GAJI FROM PELANGGAN WHERE NAMA = 'Afiani';
++----+--------+---------+
+| ID | NAMA   | GAJI    |
++----+--------+---------+
+| 13 | Afiani | 4000000 |
++----+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> INSERT INTO PELANGGAN (ID,NAMA,UMUR,ALAMAT,GAJI) VALUES (14, 'Fawzi', 20, 'Kiaracondong', 5000000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PELANGGAN (ID,NAMA,UMUR,ALAMAT,GAJI) VALUES (15, 'Adis', 20, 'Bojongsoang', 6000000);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PELANGGAN (ID,NAMA,UMUR,ALAMAT,GAJI) VALUES (16, 'Panji', 22, 'Pasteur', 7000000);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> SELECT * FROM PELANGGAN;
++----+--------+------+--------------+---------+
+| ID | NAMA   | UMUR | ALAMAT       | GAJI    |
++----+--------+------+--------------+---------+
+| 11 | Laras  |   22 | Antapani     | 2000000 |
+| 12 | Bayu   |   23 | Cihampelas   | 3000000 |
+| 13 | Afiani |   23 | Cimahi       | 4000000 |
+| 14 | Fawzi  |   20 | Kiaracondong | 5000000 |
+| 15 | Adis   |   20 | Bojongsoang  | 6000000 |
+| 16 | Panji  |   22 | Pasteur      | 7000000 |
++----+--------+------+--------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ID, NAMA, UMUR, GAJI FROM PELANGGAN WHERE GAJI > 3000000 AND UMUR < 22;
++----+-------+------+---------+
+| ID | NAMA  | UMUR | GAJI    |
++----+-------+------+---------+
+| 14 | Fawzi |   20 | 5000000 |
+| 15 | Adis  |   20 | 6000000 |
++----+-------+------+---------+
+2 rows in set (0.05 sec)
+
+mysql> SELECT ID, NAMA, UMUR, GAJI FROM PELANGGAN WHERE GAJI > 5000000 OR UMUR > 20;
++----+--------+------+---------+
+| ID | NAMA   | UMUR | GAJI    |
++----+--------+------+---------+
+| 11 | Laras  |   22 | 2000000 |
+| 12 | Bayu   |   23 | 3000000 |
+| 13 | Afiani |   23 | 4000000 |
+| 15 | Adis   |   20 | 6000000 |
+| 16 | Panji  |   22 | 7000000 |
++----+--------+------+---------+
+5 rows in set (0.00 sec)
+
+mysql> CREATE TABLE PESANAN(OID INT NOT NULL, TANGGAL INT NOT NULL, ID_PELANGGAN INT NOT NULL, JUMLAH DECIMAL (18, 2), PRIMARY KEY (ID_PELANGGAN));
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> INSERT INTO PESANAN (OID,TANGGAL,ID_PELANGGAN,JUMLAH) VALUES (300, 02072017, 13, 5000);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> INSERT INTO PESANAN (OID,TANGGAL,ID_PELANGGAN,JUMLAH) VALUES (423, 22092017, 11, 3400);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> INSERT INTO PESANAN (OID,TANGGAL,ID_PELANGGAN,JUMLAH) VALUES (521, 01102017, 12, 4300);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PESANAN (OID,TANGGAL,ID_PELANGGAN,JUMLAH) VALUES (501, 01102017, 16, 3200);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PESANAN (OID,TANGGAL,ID_PELANGGAN,JUMLAH) VALUES (612, 02102017, 14, 6800);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> INSERT INTO PESANAN (OID,TANGGAL,ID_PELANGGAN,JUMLAH) VALUES (745, 03102017, 15, 8600);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> SELECT * FROM PESANAN;
++-----+----------+--------------+---------+
+| OID | TANGGAL  | ID_PELANGGAN | JUMLAH  |
++-----+----------+--------------+---------+
+| 423 | 22092017 |           11 | 3400.00 |
+| 521 |  1102017 |           12 | 4300.00 |
+| 300 |  2072017 |           13 | 5000.00 |
+| 612 |  2102017 |           14 | 6800.00 |
+| 745 |  3102017 |           15 | 8600.00 |
+| 501 |  1102017 |           16 | 3200.00 |
++-----+----------+--------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ID, NAMA, JUMLAH, TANGGAL FROM PELANGGAN INNER JOIN PESANAN ON PELANGGAN.ID = PESANAN.ID_PELANGGAN;
++----+--------+---------+----------+
+| ID | NAMA   | JUMLAH  | TANGGAL  |
++----+--------+---------+----------+
+| 11 | Laras  | 3400.00 | 22092017 |
+| 12 | Bayu   | 4300.00 |  1102017 |
+| 13 | Afiani | 5000.00 |  2072017 |
+| 14 | Fawzi  | 6800.00 |  2102017 |
+| 15 | Adis   | 8600.00 |  3102017 |
+| 16 | Panji  | 3200.00 |  1102017 |
++----+--------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ID, NAMA, JUMLAH, TANGGAL FROM PELANGGAN LEFT JOIN PESANAN ON PELANGGAN.ID = PESANAN.ID_PELANGGAN;
++----+--------+---------+----------+
+| ID | NAMA   | JUMLAH  | TANGGAL  |
++----+--------+---------+----------+
+| 11 | Laras  | 3400.00 | 22092017 |
+| 12 | Bayu   | 4300.00 |  1102017 |
+| 13 | Afiani | 5000.00 |  2072017 |
+| 14 | Fawzi  | 6800.00 |  2102017 |
+| 15 | Adis   | 8600.00 |  3102017 |
+| 16 | Panji  | 3200.00 |  1102017 |
++----+--------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT ID, NAMA, JUMLAH, TANGGAL FROM PELANGGAN RIGHT JOIN PESANAN ON PELANGGAN.ID = PESANAN.ID_PELANGGAN;
++------+--------+---------+----------+
+| ID   | NAMA   | JUMLAH  | TANGGAL  |
++------+--------+---------+----------+
+|   11 | Laras  | 3400.00 | 22092017 |
+|   12 | Bayu   | 4300.00 |  1102017 |
+|   13 | Afiani | 5000.00 |  2072017 |
+|   14 | Fawzi  | 6800.00 |  2102017 |
+|   15 | Adis   | 8600.00 |  3102017 |
+|   16 | Panji  | 3200.00 |  1102017 |
++------+--------+---------+----------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT a.ID, b.NAMA, a.GAJI FROM PELANGGAN a, PELANGGAN b WHERE a.GAJI < b.GAJI;
++----+--------+---------+
+| ID | NAMA   | GAJI    |
++----+--------+---------+
+| 11 | Bayu   | 2000000 |
+| 11 | Afiani | 2000000 |
+| 12 | Afiani | 3000000 |
+| 11 | Fawzi  | 2000000 |
+| 12 | Fawzi  | 3000000 |
+| 13 | Fawzi  | 4000000 |
+| 11 | Adis   | 2000000 |
+| 12 | Adis   | 3000000 |
+| 13 | Adis   | 4000000 |
+| 14 | Adis   | 5000000 |
+| 11 | Panji  | 2000000 |
+| 12 | Panji  | 3000000 |
+| 13 | Panji  | 4000000 |
+| 14 | Panji  | 5000000 |
+| 15 | Panji  | 6000000 |
++----+--------+---------+
+15 rows in set (0.05 sec)
+
+mysql> SELECT ID, NAMA, JUMLAH, TANGGAL FROM PELANGGAN, PESANAN;
++----+--------+---------+----------+
+| ID | NAMA   | JUMLAH  | TANGGAL  |
++----+--------+---------+----------+
+| 11 | Laras  | 3400.00 | 22092017 |
+| 12 | Bayu   | 3400.00 | 22092017 |
+| 13 | Afiani | 3400.00 | 22092017 |
+| 14 | Fawzi  | 3400.00 | 22092017 |
+| 15 | Adis   | 3400.00 | 22092017 |
+| 16 | Panji  | 3400.00 | 22092017 |
+| 11 | Laras  | 4300.00 |  1102017 |
+| 12 | Bayu   | 4300.00 |  1102017 |
+| 13 | Afiani | 4300.00 |  1102017 |
+| 14 | Fawzi  | 4300.00 |  1102017 |
+| 15 | Adis   | 4300.00 |  1102017 |
+| 16 | Panji  | 4300.00 |  1102017 |
+| 11 | Laras  | 5000.00 |  2072017 |
+| 12 | Bayu   | 5000.00 |  2072017 |
+| 13 | Afiani | 5000.00 |  2072017 |
+| 14 | Fawzi  | 5000.00 |  2072017 |
+| 15 | Adis   | 5000.00 |  2072017 |
+| 16 | Panji  | 5000.00 |  2072017 |
+| 11 | Laras  | 6800.00 |  2102017 |
+| 12 | Bayu   | 6800.00 |  2102017 |
+| 13 | Afiani | 6800.00 |  2102017 |
+| 14 | Fawzi  | 6800.00 |  2102017 |
+| 15 | Adis   | 6800.00 |  2102017 |
+| 16 | Panji  | 6800.00 |  2102017 |
+| 11 | Laras  | 8600.00 |  3102017 |
+| 12 | Bayu   | 8600.00 |  3102017 |
+| 13 | Afiani | 8600.00 |  3102017 |
+| 14 | Fawzi  | 8600.00 |  3102017 |
+| 15 | Adis   | 8600.00 |  3102017 |
+| 16 | Panji  | 8600.00 |  3102017 |
+| 11 | Laras  | 3200.00 |  1102017 |
+| 12 | Bayu   | 3200.00 |  1102017 |
+| 13 | Afiani | 3200.00 |  1102017 |
+| 14 | Fawzi  | 3200.00 |  1102017 |
+| 15 | Adis   | 3200.00 |  1102017 |
+| 16 | Panji  | 3200.00 |  1102017 |
++----+--------+---------+----------+
+36 rows in set (0.00 sec)
